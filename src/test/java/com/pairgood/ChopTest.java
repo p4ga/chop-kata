@@ -19,9 +19,10 @@ public class ChopTest {
         searchAlgorithms.add(new BackwardSearch());
 
         numbers = new ArrayList<>();
-        numbers.add(1);
-        numbers.add(2);
-        numbers.add(3);
+
+        for(int i = 1; i <= 100; i++){
+            numbers.add(i);
+        }
     }
 
     @Test
@@ -50,7 +51,7 @@ public class ChopTest {
     public void backward_GivenAnArrayOfOrderedNumbersWhen_I_LookForNonExistingNumberThenNegativeOneReturned() {
 
         for(Chopper searchAlgorithm : searchAlgorithms){
-            int position = searchAlgorithm.search(4, numbers);
+            int position = searchAlgorithm.search(400, numbers);
 
             Assert.assertEquals("Failed for " + searchAlgorithm.getClass().getName(),
                     -1, position);
