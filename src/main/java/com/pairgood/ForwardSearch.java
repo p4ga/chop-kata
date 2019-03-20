@@ -10,7 +10,7 @@ public class ForwardSearch implements Chopper {
                 return i;
             }
         }
-        return -1;
+        return -100;
     }
 }
 

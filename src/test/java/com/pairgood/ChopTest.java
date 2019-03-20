@@ -9,15 +9,14 @@ import java.util.List;
 
 public class ChopTest {
 
-    private Chopper forwardSearch;
-    private Chopper backwardSearch;
+    private List<Chopper> searchAlgorithms;
     private List<Integer> numbers;
 
     @Before
     public void setUp() {
-        //arrange
-        forwardSearch = new ForwardSearch();
-        backwardSearch = new BackwardSearch();
+        searchAlgorithms = new ArrayList<>();
+        searchAlgorithms.add(new ForwardSearch());
+        searchAlgorithms.add(new BackwardSearch());
 
         numbers = new ArrayList<>();
         numbers.add(1);
@@ -27,56 +26,36 @@ public class ChopTest {
 
     @Test
     public void backward_GivenAnArrayOfOrderedNumbersWhen_I_LookForExistingNumberThenThatPositionReturned() {
-        //act
-        int position = backwardSearch.search(2, numbers);
+        for(Chopper searchAlgorithm : searchAlgorithms){
+            int position = searchAlgorithm.search(2, numbers);
 
-        //assert
-        Assert.assertEquals(1, position);
+            Assert.assertEquals("Failed for " + searchAlgorithm.getClass().getName(),
+                    1, position);
+        }
+
     }
 
     @Test
     public void backward_GivenAnArrayOfOrderedNumbersWhen_I_LookForTheLastNumberThenThatPositionReturned() {
-        //act
-        int position = backwardSearch.search(3, numbers);
+        for(Chopper searchAlgorithm : searchAlgorithms){
+            int position = searchAlgorithm.search(3, numbers);
 
-        //assert
-        Assert.assertEquals(2, position);
+            Assert.assertEquals("Failed for " + searchAlgorithm.getClass().getName(),
+                    2, position);
+        }
+
     }
 
     @Test
     public void backward_GivenAnArrayOfOrderedNumbersWhen_I_LookForNonExistingNumberThenNegativeOneReturned() {
-        //act
-        int position = backwardSearch.search(4, numbers);
 
-        //assert
-        Assert.assertEquals(-1, position);
-    }
+        for(Chopper searchAlgorithm : searchAlgorithms){
+            int position = searchAlgorithm.search(4, numbers);
 
-    @Test
-    public void forward_GivenAnArrayOfOrderedNumbersWhen_I_LookForExistingNumberThenThatPositionReturned() {
-        //act
-        int position = forwardSearch.search(2, numbers);
+            Assert.assertEquals("Failed for " + searchAlgorithm.getClass().getName(),
+                    -1, position);
+        }
 
-        //assert
-        Assert.assertEquals(1, position);
-    }
-
-    @Test
-    public void forward_GivenAnArrayOfOrderedNumbersWhen_I_LookForTheLastNumberThenThatPositionReturned() {
-        //act
-        int position = forwardSearch.search(3, numbers);
-
-        //assert
-        Assert.assertEquals(2, position);
-    }
-
-    @Test
-    public void forward_GivenAnArrayOfOrderedNumbersWhen_I_LookForNonExistingNumberThenNegativeOneReturned() {
-        //act
-        int position = forwardSearch.search(4, numbers);
-
-        //assert
-        Assert.assertEquals(-1, position);
     }
 
 }
