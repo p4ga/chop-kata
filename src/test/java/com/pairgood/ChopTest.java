@@ -1,35 +1,79 @@
 package com.pairgood;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ChopTest {
 
-    @Test
-    public void givenAnArrayOfOrderedNumbersWhen_I_LookForExistingNumberThenThatPositionReturned() {
+    private Chopper forwardSearch;
+    private Chopper backwardSearch;
+    private List<Integer> numbers;
 
+    @Before
+    public void setUp() {
         //arrange
-        int[] numbers = new int[]{1, 2, 3};
+        forwardSearch = new ForwardSearch();
+        backwardSearch = new BackwardSearch();
 
-        Chopper chopper = new OneByOneSearch();
+        numbers = new ArrayList<>();
+        numbers.add(1);
+        numbers.add(2);
+        numbers.add(3);
+    }
 
+    @Test
+    public void backward_GivenAnArrayOfOrderedNumbersWhen_I_LookForExistingNumberThenThatPositionReturned() {
         //act
-        int position = chopper.search(2, numbers);
+        int position = backwardSearch.search(2, numbers);
 
         //assert
         Assert.assertEquals(1, position);
     }
 
     @Test
-    public void givenAnArrayOfOrderedNumbersWhen_I_LookForNonExistingNumberThenNegativeOneReturned() {
-
-        //arrange
-        int[] numbers = new int[]{1, 2, 3};
-
-        Chopper chopper = new OneByOneSearch();
-
+    public void backward_GivenAnArrayOfOrderedNumbersWhen_I_LookForTheLastNumberThenThatPositionReturned() {
         //act
-        int position = chopper.search(4, numbers);
+        int position = backwardSearch.search(3, numbers);
+
+        //assert
+        Assert.assertEquals(2, position);
+    }
+
+    @Test
+    public void backward_GivenAnArrayOfOrderedNumbersWhen_I_LookForNonExistingNumberThenNegativeOneReturned() {
+        //act
+        int position = backwardSearch.search(4, numbers);
+
+        //assert
+        Assert.assertEquals(-1, position);
+    }
+
+    @Test
+    public void forward_GivenAnArrayOfOrderedNumbersWhen_I_LookForExistingNumberThenThatPositionReturned() {
+        //act
+        int position = forwardSearch.search(2, numbers);
+
+        //assert
+        Assert.assertEquals(1, position);
+    }
+
+    @Test
+    public void forward_GivenAnArrayOfOrderedNumbersWhen_I_LookForTheLastNumberThenThatPositionReturned() {
+        //act
+        int position = forwardSearch.search(3, numbers);
+
+        //assert
+        Assert.assertEquals(2, position);
+    }
+
+    @Test
+    public void forward_GivenAnArrayOfOrderedNumbersWhen_I_LookForNonExistingNumberThenNegativeOneReturned() {
+        //act
+        int position = forwardSearch.search(4, numbers);
 
         //assert
         Assert.assertEquals(-1, position);

@@ -1,6 +1,8 @@
 package com.pairgood;
 
+import java.util.List;
+
 public interface Chopper {
 
-    int search(int searchValue, int[] numbers);
+    Integer search(Integer searchValue, List<Integer> numbers);
 }
