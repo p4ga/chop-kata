@@ -26,29 +26,40 @@ public class ChopTest {
     }
 
     @Test
-    public void backward_GivenAnArrayOfOrderedNumbersWhen_I_LookForExistingNumberThenThatPositionReturned() {
+    public void search_ForNumberIn_LowerHalf() {
         for(Chopper searchAlgorithm : searchAlgorithms){
-            int position = searchAlgorithm.search(2, numbers);
+            int position = searchAlgorithm.search(12, numbers);
 
             Assert.assertEquals("Failed for " + searchAlgorithm.getClass().getName(),
-                    1, position);
+                    11, position);
         }
 
     }
 
     @Test
-    public void backward_GivenAnArrayOfOrderedNumbersWhen_I_LookForTheLastNumberThenThatPositionReturned() {
+    public void search_ForNumberIn_Middle() {
         for(Chopper searchAlgorithm : searchAlgorithms){
-            int position = searchAlgorithm.search(3, numbers);
+            int position = searchAlgorithm.search(12, numbers);
 
             Assert.assertEquals("Failed for " + searchAlgorithm.getClass().getName(),
-                    2, position);
+                    11, position);
         }
 
     }
 
     @Test
-    public void backward_GivenAnArrayOfOrderedNumbersWhen_I_LookForNonExistingNumberThenNegativeOneReturned() {
+    public void search_ForNumberIn_UpperHalf() {
+        for(Chopper searchAlgorithm : searchAlgorithms){
+            int position = searchAlgorithm.search(87, numbers);
+
+            Assert.assertEquals("Failed for " + searchAlgorithm.getClass().getName(),
+                    86, position);
+        }
+
+    }
+
+    @Test
+    public void search_ForNonExistingNumber() {
 
         for(Chopper searchAlgorithm : searchAlgorithms){
             int position = searchAlgorithm.search(400, numbers);
