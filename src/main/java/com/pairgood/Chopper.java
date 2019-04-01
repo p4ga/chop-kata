@@ -6,4 +6,3 @@ public interface Chopper {
 
     Integer search(Integer searchValue, List<Integer> numbers);
 }
-

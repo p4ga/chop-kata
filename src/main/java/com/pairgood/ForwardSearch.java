@@ -14,6 +14,3 @@ public class ForwardSearch implements Chopper {
     }
 }
 
-//search for 1 in 123 return 0
-//search for 1 in 321 return 0
-

@@ -17,6 +17,7 @@ public class ChopTest {
         searchAlgorithms = new ArrayList<>();
         searchAlgorithms.add(new ForwardSearch());
         searchAlgorithms.add(new BackwardSearch());
+        searchAlgorithms.add(new BinarySearch());
 
         numbers = new ArrayList<>();
 
@@ -69,5 +70,4 @@ public class ChopTest {
         }
 
     }
-
 }
